@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun RecordScreenUI(
+    onRecordButtonClicked:()->Unit
 ){
     val radiooptions= listOf("収入","支出")
     val (selectedOption, onOptionSelected) = remember { mutableStateOf(radiooptions[1] ) }
@@ -68,7 +69,7 @@ fun RecordScreenUI(
         OutlinedTextField(value =memo ,
             onValueChange ={memo=it}
         )
-        Button(onClick = { /*TODO*/ },) {
+        Button(onClick = { onRecordButtonClicked() }) {
             Text(text = "記録する")
         }
     }

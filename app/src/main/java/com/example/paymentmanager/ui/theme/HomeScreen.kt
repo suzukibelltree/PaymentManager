@@ -33,6 +33,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.patrykandpatrick.vico.compose.axis.horizontal.rememberBottomAxis
 import com.patrykandpatrick.vico.compose.axis.vertical.rememberStartAxis
 import com.patrykandpatrick.vico.compose.chart.Chart
@@ -44,7 +47,7 @@ import java.time.format.DateTimeFormatter
 
 @Composable
 fun HomeScreenUI(
-    modifier:Modifier=Modifier
+    onAddButtonClicked:()->Unit
 ){
     Column(modifier=Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -52,10 +55,9 @@ fun HomeScreenUI(
         Showpayments()
         ShowGraph()
         Spacer(modifier = Modifier.height(18.dp))
-        Button(onClick = { /*TODO*/ },) {
+        Button(onClick = { onAddButtonClicked() },) {
             Text(text = "収支を記録")
         }
-        ShowBottomAppBar()
     }
 }
 
@@ -112,41 +114,4 @@ fun ShowGraph(){
     }
 }
 
-@Composable
-fun ShowBottomAppBar() {
-    Scaffold(
-        bottomBar = {
-            BottomAppBar(
-                containerColor = Color.LightGray,
-                actions = {
-                    Spacer(modifier = Modifier.weight(1f))
-                    Column {
-                        IconButton(onClick = { /* do something */ }) {
-                            Icon(Icons.Filled.Home, contentDescription = "Localized description")
-                        }
-                    }
-                    Spacer(modifier = Modifier.weight(1f))
-                    Column {
-                        IconButton(onClick = { /* do something */ }) {
-                            Icon(
-                                Icons.Filled.Menu,
-                                contentDescription = "Localized description",
-                            )
-                        }
-                    }
-                    Spacer(modifier = Modifier.weight(1f))
-                    Column {
-                        IconButton(onClick = { /* do something */ }) {
-                            Icon(
-                                Icons.Filled.Settings,
-                                contentDescription = "Localized description",
-                            )
-                        }
-                    }
-                    Spacer(modifier = Modifier.weight(1f))
-                },
-            )
-        },
-    ) {innerPadding ->Unit}
-}
 

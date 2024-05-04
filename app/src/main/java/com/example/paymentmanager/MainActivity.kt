@@ -27,7 +27,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HomeScreenUI()
+                    PaymentManageApp()
                 }
             }
         }
@@ -35,8 +35,5 @@ class MainActivity : ComponentActivity() {
 }
 
 
-@Preview
-@Composable
-fun PaymentManagerPreview(){
-    RecordScreenUI()
-}
+
+
