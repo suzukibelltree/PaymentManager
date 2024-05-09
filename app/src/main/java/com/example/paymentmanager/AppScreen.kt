@@ -1,5 +1,6 @@
 package com.example.paymentmanager
 
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.material.icons.Icons
@@ -20,6 +21,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.paymentmanager.ui.theme.HistoryScreenUI
 import com.example.paymentmanager.ui.theme.HomeScreenUI
 import com.example.paymentmanager.ui.theme.RecordScreenUI
+import com.example.paymentmanager.ui.theme.RecordScreenVM
 import com.example.paymentmanager.ui.theme.SettingScreen
 
 enum class AppScreen (){
@@ -31,7 +33,8 @@ enum class AppScreen (){
 
 @Composable
 fun PaymentManageApp(
-    navController:NavHostController= rememberNavController()
+    navController:NavHostController= rememberNavController(),
+    recordViewModel:RecordScreenVM
 ){
     Scaffold(
         bottomBar = {
@@ -80,7 +83,10 @@ fun PaymentManageApp(
                 SettingScreen()
             }
             composable(route=AppScreen.Record.name){
-                RecordScreenUI(onRecordButtonClicked = {navController.navigate(AppScreen.Home.name)})
+                RecordScreenUI(
+                    onRecordButtonClicked = {navController.navigate(AppScreen.Home.name)},
+                    recordVM = recordViewModel
+                    )
             }
         }
     }

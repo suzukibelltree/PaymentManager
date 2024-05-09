@@ -29,47 +29,56 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun RecordScreenUI(
-    onRecordButtonClicked:()->Unit
+    onRecordButtonClicked:()->Unit,
+    recordVM:RecordScreenVM,
 ){
-    val radiooptions= listOf("収入","支出")
-    val (selectedOption, onOptionSelected) = remember { mutableStateOf(radiooptions[1] ) }
-    var value by remember { mutableStateOf("") }
-    var memo by remember { mutableStateOf("") }
+    var state by remember { mutableStateOf(true) }
     Column(
         modifier=Modifier.padding(18.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Spacer(modifier = Modifier.height(20.dp))
-        radiooptions.forEach { text->
-            Row(
-                Modifier
-                    .fillMaxWidth()
-                    .selectable(
-                        selected = (text == selectedOption),
-                        onClick = { onOptionSelected(text) }
+            Column(modifier=Modifier.fillMaxWidth())
+                {
+                Row {
+                    RadioButton(
+                        selected = state,
+                        onClick = {
+                            state=!state
+                            recordVM.ispayment=false
+                        }
                     )
-            ) {
-                RadioButton(selected = (text==selectedOption), onClick = { onOptionSelected(text) })
-                Text(text = text, fontSize = 22.sp)
-            }
-        }
+                    Text(text = "収入", fontSize = 22.sp)
+                }
+                Row {
+                    RadioButton(
+                        selected = !state,
+                        onClick = {
+                            state=!state
+                            recordVM.ispayment=true
+                        }
+                    )
+                    Text(text = "支出", fontSize = 22.sp)
+                }
+                }
         Spacer(modifier = Modifier.height(12.dp))
         Row(modifier=Modifier.align(Alignment.Start)) {
             Text(text = "金額", fontSize = 28.sp)
             Spacer(modifier = Modifier.width(8.dp))
-            OutlinedTextField(value = value,
-                onValueChange = {value=it},
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+            OutlinedTextField(value = recordVM.amount,
+                onValueChange = {recordVM.amount=it},
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                singleLine = true
                 )
         }
         Spacer(modifier =Modifier.height(24.dp))
         Row(modifier=Modifier.align(Alignment.Start)) {
             Text(text = "備考欄", fontSize = 28.sp)
         }
-        OutlinedTextField(value =memo ,
-            onValueChange ={memo=it}
+        OutlinedTextField(value =recordVM.description,
+            onValueChange ={recordVM.description=it}
         )
-        Button(onClick = { onRecordButtonClicked() }) {
+        Button(onClick = { onRecordButtonClicked()}) {
             Text(text = "記録する")
         }
     }

@@ -74,6 +74,8 @@ dependencies {
 
     implementation("androidx.navigation:navigation-compose:$nav_version")
 
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+
     // Houses the core logic for charts and other elements. Included in all other modules.
     implementation("com.patrykandpatrick.vico:core:1.13.1")
     testImplementation(libs.junit)
