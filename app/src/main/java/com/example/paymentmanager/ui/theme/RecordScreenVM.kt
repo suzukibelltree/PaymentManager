@@ -17,15 +17,14 @@ class RecordScreenVM(private val recordDao:RecordDao) : ViewModel() {
 
 
     fun createRecord(){
+        val newRecord=Record(
+            isPayment = ispayment ,
+            amount = (amount).toInt(),
+            description = description
+        )
         viewModelScope.launch {
-            val newRecord= Record(
-                id =1 ,//一旦数値を入れている
-                isPayment = ispayment ,
-                amount = (amount).toInt(),
-                description = description
-            )
             recordDao.InsertRecord(newRecord)
-            Log.d("Test","room test success!")
         }
+        Log.d("Test","room test success!")
     }
 }

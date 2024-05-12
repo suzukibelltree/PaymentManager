@@ -13,4 +13,6 @@ data class Record @Ignore constructor(
     var description:String=""//備考欄の記述
 ){
     constructor():this(0,true,0,"")
+    //↑のid部分は値を何らかの値を渡さないとエラーになる
 }
+
