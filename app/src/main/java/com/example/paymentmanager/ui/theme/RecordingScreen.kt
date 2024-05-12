@@ -78,7 +78,10 @@ fun RecordScreenUI(
         OutlinedTextField(value =recordVM.description,
             onValueChange ={recordVM.description=it}
         )
-        Button(onClick = { onRecordButtonClicked()}) {
+        Button(onClick = {
+            onRecordButtonClicked()
+            recordVM.createRecord()
+        }) {
             Text(text = "記録する")
         }
     }
