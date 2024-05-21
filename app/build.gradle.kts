@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    id("kotlin-kapt")
+    id ("kotlin-android") //追加
+    id ("com.google.devtools.ksp")  //更に追加
 }
 
 android {
@@ -65,21 +66,18 @@ dependencies {
     implementation("androidx.compose.material3:material3-adaptive-navigation-suite:1.0.0-alpha06")
     //Vico(For Jetpack Compose).
     implementation("com.patrykandpatrick.vico:compose:1.13.1")
-    // For `compose`. Creates a `ChartStyle` based on an M2 Material Theme.
     implementation("com.patrykandpatrick.vico:compose-m2:1.13.1")
-
-    // For `compose`. Creates a `ChartStyle` based on an M3 Material Theme.
     implementation("com.patrykandpatrick.vico:compose-m3:1.13.1")
+
     //For Navigation Compose
     val nav_version = "2.7.7"
-
     implementation("androidx.navigation:navigation-compose:$nav_version")
-
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
 
-    val room_version = "2.4.2"
+    //For Room
+    val room_version = "2.6.1"
     implementation("androidx.room:room-runtime:$room_version")
-    kapt("androidx.room:room-compiler:$room_version")
+    ksp("androidx.room:room-compiler:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
 
     // Houses the core logic for charts and other elements. Included in all other modules.
