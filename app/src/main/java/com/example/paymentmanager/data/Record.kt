@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "Records")
 data class Record @Ignore constructor(
     @PrimaryKey(autoGenerate = true)
-    val id:Int=0,//記録のid
+    var id:Int=0,//記録のid
     var isPayment:Boolean=true,//支払いか否か
     var amount:Int=0,//金額
     var description:String=""//備考欄の記述
